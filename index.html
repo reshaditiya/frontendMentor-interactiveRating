@@ -69,9 +69,9 @@
           <template x-for="rates in ratingScale">
             <span
               x-text="rates"
-              class="w-[3rem] h-[3rem] bg-dark-blue hover:bg-medium-grey hover:text-white flex justify-center items-center rounded-full cursor-pointer select-none"
+              class="w-[3rem] h-[3rem] bg-dark-blue hover:text-white flex justify-center items-center rounded-full cursor-pointer select-none"
               x-on:click="rating = rates"
-              x-bind:class="rates == rating ? 'bg-orange text-white' : ''"
+              x-bind:class="rates == rating ? 'bg-orange text-white' : 'hover:bg-medium-grey'"
             ></span>
           </template>
         </div>
