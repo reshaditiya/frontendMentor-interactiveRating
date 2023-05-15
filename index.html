@@ -1,49 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Interactive rating component</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              orange: "#fb7413",
+              white: "#ffffff",
+              "light-grey": "	#959eac",
+              "medium-grey": "#7c8798",
+              "dark-blue": "#252d37",
+              "very-dark-blue": "#121417",
+              "gd-cont-top": "#222933",
+              "gd-cont-bottom": "#171E28",
+            },
+            fontSize: {
+              base: ["15px", "20px"],
+              title: "1.8rem",
+            },
+            fontFamily: {
+              base: "Overpass",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Interactive rating component</title>
+  <!-- <body
+    class="bg-very-dark-blue text-light-grey text-base font-base font-normal flex justify-center items-center h-screen"
+  > -->
+  <body
+    class="bg-very-dark-blue text-light-grey text-base font-base font-normal flex flex-col items-center mt-[12.2rem] mx-auto"
+  >
+    <div
+      class="container max-w-[25.8rem] bg-gradient-to-t from-gd-cont-bottom to-gd-cont-top p-[2.2rem] rounded-[2rem]"
+      x-data="{ ratingScale: [1, 2, 3, 4, 5], rating: 0, loc: 'rate' }"
+    >
+      <div class="flex flex-col items-start" x-show="loc == 'rate'">
+        <img
+          src="images/icon-star.svg"
+          alt=""
+          class="grow-0 p-[.8rem] bg-dark-blue rounded-full"
+        />
+        <h1 class="text-title text-white font-bold mt-[2.8rem]">
+          How did we do?
+        </h1>
+        <p class="mt-[1.1rem] leading-[1.4rem]">
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
+        </p>
+        <div class="flex w-full mt-[2rem] justify-between">
+          <template x-for="rates in ratingScale">
+            <span
+              x-text="rates"
+              class="w-[3rem] h-[3rem] bg-dark-blue hover:bg-medium-grey hover:text-white flex justify-center items-center rounded-full cursor-pointer select-none"
+              x-on:click="rating = rates"
+              x-bind:class="rates == rating ? 'bg-orange text-white' : ''"
+            ></span>
+          </template>
+        </div>
+        <button
+          class="w-full bg-orange text-white p-[.8rem] pt-[.9rem] rounded-full mt-[2rem] font-bold tracking-[.2rem] hover:text-orange hover:bg-white"
+          x-on:click="loc = rating == 0 ? 'rate' : 'thanks'"
+        >
+          SUBMIT
+        </button>
+      </div>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
-</head>
-<body>
+      <div class="flex flex-col items-center" x-show="loc == 'thanks'">
+        <img
+          src="images/illustration-thank-you.svg"
+          alt=""
+          class="mt-[.8rem]"
+        />
+        <div
+          class="bg-dark-blue text-orange mt-[2.1rem] py-[.3rem] px-[1.1rem] rounded-full"
+        >
+          You selected <span x-text="rating"></span> out of
+          <span x-text="ratingScale.length"></span>
+        </div>
+        <h1 class="text-title text-white font-bold mt-[2.6rem]">Thank you!</h1>
+        <p class="text-center mt-[1.1rem] leading-[1.4rem]">
+          We appreciate you taking the time to give a rating. If you ever need
+          more support, don’t hesitate to get in touch!
+        </p>
+      </div>
+    </div>
 
-  <!-- Rating state start -->
-
-  How did we do?
-
-  Please let us know how we did with your support request. All feedback is appreciated 
-  to help us improve our offering!
-
-  1 2 3 4 5
-
-  Submit
-
-  <!-- Rating state end -->
-
-  <!-- Thank you state start -->
-
-  You selected <!-- Add rating here --> out of 5
-
-  Thank you!
-
-  We appreciate you taking the time to give a rating. If you ever need more support, 
-  don’t hesitate to get in touch!
-
-  <!-- Thank you state end -->
-
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
-</body>
+    <!-- <div class="mt-4">
+      Challenge by
+      <a
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
+        class="underline"
+        >Frontend Mentor</a
+      >. Coded by
+      <a
+        href="https://reshaditiya.com"
+        target="_blank"
+        class="underline"
+        >Resha Aditiya</a
+      >. -->
+    </div>
+  </body>
 </html>
